@@ -1,7 +1,8 @@
 import Header from "./components/Header";
 import genRandomInt from "./components/GenRandomInt";
 import CoreConcepts from "./components/CoreConcepts";
-import { CORE_CONCEPTS } from "./components/data";
+import { CORE_CONCEPTS } from "./data";
+import TabButton from "./components/TabButton";
 
 
 function App() {
@@ -21,6 +22,15 @@ function App() {
             <CoreConcepts {...CORE_CONCEPTS[2]} />
             <CoreConcepts {...CORE_CONCEPTS[3]} />
           </ul>
+        </section>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton>Components</TabButton>
+            <TabButton>JSX</TabButton>
+            <TabButton>Props</TabButton>
+            <TabButton>State</TabButton>
+          </menu>
         </section>
       </main>
     </div>
