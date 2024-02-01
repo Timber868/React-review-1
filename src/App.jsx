@@ -3,12 +3,13 @@ import { useState } from "react";
 import Header from "./components/Header";
 import genRandomInt from "./components/GenRandomInt";
 import CoreConcepts from "./components/CoreConcepts";
-import { CORE_CONCEPTS } from "./data";
 import TabButton from "./components/TabButton";
 
+import { CORE_CONCEPTS } from "./data/data-with-examples";
+import { EXAMPLES } from "./data/data-with-examples";
 
 function App() {
-  const [ selectedTopic, setSelectedTopic ] = useState('Please click a button');
+  const [ selectedTopic, setSelectedTopic ] = useState(null);
 
   function handleSelect(selectedButton) {
     //either components, JSX, Props or State
@@ -19,6 +20,18 @@ function App() {
   const wordOptions = ["Way", "Time", "No better time"]
   const firstWord = wordOptions[genRandomInt(3)];
 
+  let tabContent = <p> Please select a topic.</p>
+
+  if (selectedTopic) {
+    tabContent = <div id="tab-content"> <h3>{EXAMPLES[selectedTopic].title}</h3>
+    <p>{EXAMPLES[selectedTopic].description}</p>
+    <pre>
+      <code>
+      {EXAMPLES[selectedTopic].code}
+      </code>
+    </pre>
+  </div>
+  }
   return (
     <div>
       <Header/>
@@ -41,7 +54,7 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          {selectedTopic}
+            {tabContent}
         </section>
       </main>
     </div>
