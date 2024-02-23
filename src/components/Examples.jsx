@@ -3,6 +3,8 @@ import { useState, Fragment } from "react";
 import { EXAMPLES } from "../data/data-with-examples";
 
 import TabButton from "./TabButton";
+import Section from "./Section";
+import Tabs from "./Tabs";
 
 export default function Examples(props){
     const [ selectedTopic, setSelectedTopic ] = useState(null);
@@ -28,15 +30,17 @@ export default function Examples(props){
 
 
     return(
-        <section id="examples">
-          <h2>Examples</h2>
-          <menu>
-            <TabButton isSelected={selectedTopic === "components"} onSelect={() => handleSelect("components")}>Components</TabButton>
-            <TabButton isSelected={selectedTopic === "jsx"} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic === "props"} onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === "state"} onSelect={() => handleSelect("state")}>State</TabButton>
-          </menu>
-            {tabContent}
-        </section>
+        <Section id="examples">
+            <Tabs 
+            buttonsContainer="menu" //If i wanted to use a component i wouldve put {Section} instead of a string identifier
+            buttons={<>
+                <TabButton isSelected={selectedTopic === "components"} onSelect={() => handleSelect("components")}>Components</TabButton>
+                <TabButton isSelected={selectedTopic === "jsx"} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
+                <TabButton isSelected={selectedTopic === "props"} onSelect={() => handleSelect("props")}>Props</TabButton>
+                <TabButton isSelected={selectedTopic === "state"} onSelect={() => handleSelect("state")}>State</TabButton>
+            </>}> 
+                {tabContent} 
+            </Tabs>
+        </Section>
     );
 }
